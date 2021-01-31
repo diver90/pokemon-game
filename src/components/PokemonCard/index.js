@@ -5,7 +5,7 @@ import { useState} from 'react';
  const PokemonCard = ( {id, type, img, name, values}  ) => {
      const [isActive, setActive] = useState(false);
      const handleClick = () => {
-        setActive(true);
+        setActive(!isActive);
      }
 
  return (
