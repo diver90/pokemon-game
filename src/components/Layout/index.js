@@ -1,16 +1,17 @@
-import layout from './style.module.css';
+import style from './style.module.css';
+import cn from 'classnames';
 
 const Layout = ({id, title, urlBg, colorBg, children, colorTitle}) => {
     const styleBg = { backgroundImage: `url(${urlBg})`, backgroundColor: colorBg};
     return (
-        <section className={layout.root} id={id} style={styleBg}>
-            <div className={layout.wrapper}>
+        <section className={style.root} id={id} style={styleBg}>
+            <div className={style.wrapper}>
                 <article>
-                    <div className={layout.title}>
+                    <div className={style.title}>
                         <h3 style={{color: colorTitle}}>{title}</h3>
-                        <span className={layout.separator}></span>
+                        <span className={style.separator}></span>
                     </div>
-                    <div className={`${layout.desc} ${layout.full}`}>
+                    <div className={cn(style.desc, style.full)}>
                         {children}
                     </div>
                 </article>

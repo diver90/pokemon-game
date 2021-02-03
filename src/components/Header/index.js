@@ -1,12 +1,20 @@
-import head from './style.module.css';
+import style from './style.module.css';
 
-const Header = ({title, descr}) => {
+const Header = ({title, descr, onClickButton}) => {
+    const handleClick = () => {
+        console.log('####: <Header />');
+        onClickButton && onClickButton('game');
+
+    }
     return (
-    <header className={head.root}>
-        <div className={head.forest}></div>
-        <div className={head.container}>
+    <header className={style.root}>
+        <div className={style.forest}></div>
+        <div className={style.container}>
             <h1>{title}</h1>
             <p>{descr}</p>
+            <button onClick={handleClick}>
+                Start Game
+            </button>
         </div>
     </header>
     )
