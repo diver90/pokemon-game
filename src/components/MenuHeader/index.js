@@ -2,15 +2,15 @@ import {useState} from 'react';
 import Menu from "../Menu";
 import NavBar from "../NavBar";
 
-const MenuHeader = () => {
-    const [isActive, setActive] = useState(false);
+const MenuHeader = ({ bgActive }) => {
+    const [isActive, setActive] = useState(null);
     const handleClick = () => {
         setActive(!isActive);
     };
     return (
         <>
-            <Menu active={isActive}/>
-            <NavBar active={isActive} onClickMenu={handleClick}/>
+            <Menu active={isActive} onClickMenu={handleClick}/>
+            <NavBar active={isActive} bgActive={bgActive} onClickMenu={handleClick}/>
         </>
     );
 }

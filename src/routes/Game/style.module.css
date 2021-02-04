@@ -1,0 +1,32 @@
+.root {
+    font-size: 1.4rem;
+    position: relative;
+    background: #fafafa;
+    z-index: 5;
+    background-attachment: fixed;
+}
+
+.root .wrapper {
+    padding: 5rem 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 949px) {
+    .root {
+        background-position: top left;
+        background-size: cover;
+    }
+}
+@media only screen and (max-width: 649px) {
+    .root .wrapper {
+        padding: 10rem 2rem 8rem;
+    }
+}
