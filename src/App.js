@@ -18,7 +18,6 @@ const App = () => {
                 <>
                     <MenuHeader bgActive={!match.isExact}/>
                     <div className={cn(style.wrap, {[style.isHomePage]: match.isExact})}>
-                        {console.log(match.isExact)}
                         <Switch>
                             <Route path="/" exact component={HomePage}/>
                             <Route path="/game" component={GamePage}/>
