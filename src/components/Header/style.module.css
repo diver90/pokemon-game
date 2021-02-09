@@ -135,3 +135,44 @@
     color: #fafafa;
     line-height: 32px;
 }
+
+
+.btn{
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #fafafa;
+    color: #fafafa;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.btn:hover, .btn:active {
+    border: 1px solid #f300b4;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 100px -20px #f300b4;
+}
+
+    .startBtn {
+    background: #f300b4;
+    border: 1px solid transparent;
+    color: #fafafa;
+    font-weight: bold;
+}
+
+.startBtn :hover, .startBtn :active {
+    background: transparent;
+    border: 1px solid #f300b4;
+}
+
+
+.startBtn :disabled {
+    background: #bfbcbe;
+}
+
+.startBtn:hover, .startBtn:active {
+    background: #bfbcbe;
+    border: 1px solid transparent;
+    transform: none;
+}
+
