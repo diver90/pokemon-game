@@ -1,4 +1,5 @@
 import {useState, useEffect, useContext } from "react";
+import {useHistory, useRouteMatch} from "react-router-dom";
 import bg3 from "../../../../assets/bg3.jpg";
 import PokemonCard from "../../../../components/PokemonCard";
 import {FireBaseContext} from "../../../../context/FirebaseContext";
@@ -6,36 +7,6 @@ import {PokemonContext} from "../../../../context/pokemonContext";
 import cn from 'classnames';
 
 import style from './style.module.css';
-import {useHistory, useRouteMatch} from "react-router-dom";
-
-
-const DATA = {
-    "abilities": [
-        "keen-eye",
-        "tangled-feet",
-        "big-pecks"
-    ],
-    "stats": {
-        "hp": 63,
-        "attack": 60,
-        "defense": 55,
-        "special-attack": 50,
-        "special-defense": 50,
-        "speed": 71
-    },
-    "type": "flying",
-    "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
-    "name": "pidgeotto",
-    "base_experience": 122,
-    "height": 11,
-    "id": 17,
-    "values": {
-        "top": "A",
-        "right": 2,
-        "bottom": 7,
-        "left": 5
-    }
-};
 
 
 const StartPage = () => {
@@ -43,35 +14,28 @@ const StartPage = () => {
     const firebase = useContext(FireBaseContext);
     const pokemonContext = useContext(PokemonContext);
     const styleBg = {backgroundImage: `url(${bg3})`};
-    const [pokemonsBase, setBasePokemons] = useState({});
-console.log(pokemonContext);
+    const [pokemons, setPokemons] = useState({});
+
     useEffect(() => {
         firebase.getPokemonSocket((pokemons) => {
-            setBasePokemons(pokemons);
-        })
+            setPokemons(pokemons);
+        });
+
+        return () => firebase.offPokemonSocket();
     }, []);
 
-    const handleClickCard = (id) => {
-        setBasePokemons(prevState => {
-            return Object.entries(prevState).reduce((acc, item) => {
-                const pokemon = { ...item[1]};
-                if (pokemon.id === id) {
-                    pokemonContext.pokemons.push(pokemon);
-                    pokemon.isSelected = !pokemon.isSelected;
-                    // database.ref('pokemons/'+ item[0]).set({...pokemon});
-                    //firebase.postPokemon(item[0], pokemon);
-                }
-                acc[item[0]] = pokemon;
+    const handleClickCard = (key) => {
+        const pokemon = {...pokemons[key]};
+        pokemonContext.onSelectedPokemons(key, pokemon);
+        setPokemons(prevState => ({
+            ...prevState,
+            [key]: {
+                ...prevState[key],
+                isSelected: !prevState[key].isSelected
+            }
+        }))
 
-                return acc;
-            }, {});
-        });
-    };
-
-    const handleAddCard = () => {
-        const data = DATA;
-        firebase.addPokemon(data);
-    }
+        }
 
     const history = useHistory();
 
@@ -83,16 +47,21 @@ console.log(pokemonContext);
         <>
             <div style={styleBg} className={style.root}>
                 <div className={style.wrapper}>
-                    <div className={style.flex}>
-                        <button className={cn(style.btn)} onClick={handleStartGame}>Start Game!</button>
+                    <div className={style.btnWrapper}>
+                        <button
+                            className={cn(style.btn)}
+                            onClick={handleStartGame}
+                            disabled={Object.keys(pokemonContext.pokemons).length < 5}
+                        >
+                            Start Game!</button>
                     </div>
 
                     <div className={style.flex}>
                         {
-
-                            Object.entries(pokemonsBase).map(([key, {name, img, id, type, values, isSelected}]) =>
+                            Object.entries(pokemons).map(([key, {name, img, id, type, values, isSelected}]) =>
                             (
                                 <PokemonCard
+                                    className={style.card}
                                     key={key}
                                     id={id}
                                     type={type}
@@ -101,8 +70,11 @@ console.log(pokemonContext);
                                     values={values}
                                     isActive={true}
                                     isSelected={isSelected}
-                                    setActive={handleClickCard}
-                                    minimize={false}
+                                    onClickCard={() => {
+                                        if (Object.keys(pokemonContext.pokemons).length < 5 || isSelected) {
+                                            handleClickCard(key)
+                                        }
+                                    }}
 
                                 />
                             ))
