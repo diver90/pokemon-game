@@ -1,11 +1,13 @@
 import style from './style.module.css';
-import MenuHeader from "../../components/MenuHeader";
+import {useHistory} from "react-router-dom";
 
 const NotFoundPage = ({ onClickButton }) => {
+    const history = useHistory();
+
     const handleClick = () => {
-        console.log('####: <GamePage />');
-        onClickButton && onClickButton('app');
+        history.push('/');
     }
+
     return (
         <>
             <div className={style.container}>

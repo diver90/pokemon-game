@@ -1,4 +1,5 @@
 import {useHistory} from 'react-router-dom';
+import cn from 'classnames';
 
 import style from './style.module.css';
 
@@ -18,7 +19,7 @@ const Header = ({title, descr, onClickButton}) => {
         <div className={style.container}>
             <h1>{title}</h1>
             <p>{descr}</p>
-            <button onClick={handleClick}>
+            <button className={cn(style.btn, style.startBtn)} onClick={handleClick}>
                 Start Game
             </button>
         </div>

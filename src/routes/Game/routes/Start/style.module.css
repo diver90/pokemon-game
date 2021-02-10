@@ -1,0 +1,63 @@
+.root {
+    font-size: 1.4rem;
+    position: relative;
+    background: #fafafa;
+    z-index: 5;
+    background-attachment: fixed;
+}
+
+.root {
+    padding: 5rem 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+}
+
+@media only screen and (max-width: 949px) {
+    .root {
+        background-position: top left;
+        background-size: cover;
+    }
+}
+@media only screen and (max-width: 649px) {
+    .root .wrapper {
+        padding: 10rem 2rem 8rem;
+    }
+}
+
+.btn{
+    /*width: 100%;*/
+    font-family: Overlock;
+    max-width: 300px;
+    padding: 1rem;
+    border: 1px solid #f300b4;
+    border-radius: 8px;
+    color: #59e009;
+    background-color: #f300b4;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    text-shadow: #98d7a5;
+}
+
+.btnWrapper {
+    text-align: center;
+    padding: 2rem;
+}
+
+.btn:hover, .btn:active {
+    border: 1px solid #872068;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 100px -20px #f30039;
+}
+
+.card {
+    width: 100%;
+    height: 380px;
+    cursor: pointer;
+}
