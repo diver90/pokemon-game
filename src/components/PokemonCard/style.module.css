@@ -19,11 +19,11 @@
     position: relative;
     transform-style: preserve-3d;
     transition: .6s .1s;
-    transform: rotateY(180deg);
+
 }
 
 .pokemonCard.active {
-    animation: flipFront 1000ms 300ms forwards;
+    transform: rotateY(0deg);
 }
 
 @keyframes flipFront {
@@ -234,4 +234,12 @@
 .pokemonCard:active .wrap.front::after,
 .pokemonCard:focus .wrap.front::after {
     border-color: var(--rock);
+}
+
+.red{
+    background-color: #c67860;
+}
+
+.blue{
+    background-color: #82b7ec;
 }

@@ -1,6 +1,5 @@
 import {useState, useEffect, useContext } from "react";
 import {useHistory, useRouteMatch} from "react-router-dom";
-import bg3 from "../../../../assets/bg3.jpg";
 import PokemonCard from "../../../../components/PokemonCard";
 import {FireBaseContext} from "../../../../context/FirebaseContext";
 import {PokemonContext} from "../../../../context/pokemonContext";
@@ -13,7 +12,6 @@ const StartPage = () => {
     const match = useRouteMatch();
     const firebase = useContext(FireBaseContext);
     const pokemonContext = useContext(PokemonContext);
-    const styleBg = {backgroundImage: `url(${bg3})`};
     const [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
@@ -45,7 +43,7 @@ const StartPage = () => {
 
     return (
         <>
-            <div style={styleBg} className={style.root}>
+            <div className={style.root}>
                 <div className={style.wrapper}>
                     <div className={style.btnWrapper}>
                         <button

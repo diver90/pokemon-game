@@ -1,5 +1,4 @@
 import style from './style.module.css';
-import MenuHeader from "../../components/MenuHeader";
 
 const ContactPage = ({ onClickButton }) => {
     const handleClick = () => {

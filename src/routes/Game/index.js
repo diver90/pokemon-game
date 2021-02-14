@@ -8,6 +8,8 @@ import {PokemonContext} from '../../context/pokemonContext';
 const GamePage = () => {
     const match = useRouteMatch();
     const [selectedPokemons, setSelectedPokemons] = useState({})
+    const [player2Pokemons, setPlayer2Pokemons] = useState({})
+    const [winStatus, setWinStatus] = useState({})
     const handleSelectedPokemons = (key, pokemon) => {
         setSelectedPokemons(prevState => {
             if (prevState[key]) {
@@ -22,13 +24,25 @@ const GamePage = () => {
                 [key]: pokemon
             }
         });
-    }
+    };
+
+    const handlePlayer2Pokemons = (player2) => {
+        return setPlayer2Pokemons(player2);
+    };
+
+    const hanldleEndGame = (status) => {
+        return setWinStatus(status);
+    };
 
     return (
         <PokemonContext.Provider value={
             {
                 pokemons: selectedPokemons,
-                onSelectedPokemons: handleSelectedPokemons
+                player2: player2Pokemons,
+                win: false,
+                onEndGame: hanldleEndGame,
+                onSelectedPokemons: handleSelectedPokemons,
+                onArrivePokemons: handlePlayer2Pokemons,
             }
         }>
             <Switch>
