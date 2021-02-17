@@ -1,35 +1,15 @@
 .root {
-    font-size: 1.4rem;
+    background-image: url(../../../../assets/board.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vw / 1.71);
     position: relative;
-    background: #fafafa;
-    z-index: 5;
-    background-attachment: fixed;
 }
 
-.root {
-    padding: 5rem 1rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.flex {
-    display: flex;
-    flex-basis: auto;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    row-gap: 40px;
-}
-
-@media only screen and (max-width: 949px) {
-    .root {
-        background-position: top left;
-        background-size: cover;
-    }
-}
-@media only screen and (max-width: 649px) {
-    .root .wrapper {
-        padding: 10rem 2rem 8rem;
-    }
+.wrapper {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 40px;
 }
 
 .btn{
@@ -59,7 +39,15 @@
 }
 
 .card {
-    max-width: 280px;
+    width: 280px;
     height: 380px;
     cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    flex-basis: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 40px;
 }

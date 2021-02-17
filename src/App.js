@@ -16,7 +16,7 @@ import style from './style.module.css';
 
 const App = () => {
     const location = useLocation();
-    const isPadding = location.pathname === '/' || location.pathname === '/game'|| location.pathname === '/game/board';
+    const isPadding = location.pathname === '/' || location.pathname === '/game/board';
     return (
         <FireBaseContext.Provider value={new Firebase()} >
         <Switch>
